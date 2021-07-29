@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 const firebaseConfig = {
   apiKey: 'AIzaSyBBq7jDu_kbP1shxBov-jUiYs-5gDsFFx8',
   authDomain: 'cloudsbay-c1dda.firebaseapp.com',
@@ -11,3 +11,4 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+console.log('firebase outside');

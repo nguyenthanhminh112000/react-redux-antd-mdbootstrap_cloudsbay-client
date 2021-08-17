@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 const firebaseConfig = {
   apiKey: 'AIzaSyBBq7jDu_kbP1shxBov-jUiYs-5gDsFFx8',
   authDomain: 'cloudsbay-c1dda.firebaseapp.com',

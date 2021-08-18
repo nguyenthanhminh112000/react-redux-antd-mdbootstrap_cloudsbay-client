@@ -3,7 +3,7 @@ import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 
 console.log('RegisterComplete outside');
-const RegisterComplete = () => {
+const RegisterComplete = ({ history }) => {
   console.log('RegisterComplete inside');
   // hooks
   const [email, setEmail] = useState('');
@@ -15,6 +15,30 @@ const RegisterComplete = () => {
   // functions
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error('Email and password are required.');
+      return;
+    }
+    if (password.length < 6) {
+      toast.error('Password must have at least 6 characters.');
+      return;
+    }
+    try {
+      const result = await auth.signInWithEmailLink(
+        email,
+        window.location.href
+      );
+      window.localStorage.removeItem('emailForRegistration');
+      if (result.user.emailVerified) {
+        let user = auth.currentUser;
+        await user.updatePassword(password);
+        const idTokenResult = await user.getIdTokenResult();
+        toast.success(`Sign up success.`);
+        history.push('/');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   const handleChange = (e) => {
     setPassword(e.target.value);

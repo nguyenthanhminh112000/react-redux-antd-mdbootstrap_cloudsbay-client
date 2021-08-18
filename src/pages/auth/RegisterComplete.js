@@ -22,7 +22,13 @@ const RegisterComplete = () => {
   // components
   const registrationCompleteForm = () => (
     <form onSubmit={handleSubmit}>
-      <input type='email' className='form-control' value={email} disabled />
+      <input
+        type='email'
+        className='form-control'
+        value={email}
+        disabled
+        style={{ marginBottom: '10px' }}
+      />
       <input
         type='password'
         className='form-control'
@@ -30,9 +36,10 @@ const RegisterComplete = () => {
         required
         value={password}
         onChange={handleChange}
+        style={{ marginBottom: '10px' }}
       />
       <button type='submit' className='btn btn-raised'>
-        Register Complete
+        Complete Registration
       </button>
     </form>
   );
@@ -42,7 +49,6 @@ const RegisterComplete = () => {
       <div className='row'>
         <div className='col-md-6 offset-md-3'>
           <h4>Register Complete</h4>
-          <br />
           {registrationCompleteForm()}
         </div>
       </div>

@@ -4,12 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+import rootReducer from './reducers';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import 'antd/dist/antd.css';
 console.log('--------------------------------------------------------');
+const store = createStore(rootReducer, composeWithDevTools());
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

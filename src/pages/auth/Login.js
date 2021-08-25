@@ -3,16 +3,30 @@ import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import { Button } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 console.log('Login outside');
-const Login = () => {
+const Login = ({ history }) => {
   console.log('Login inside');
   // hooks
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   // functions
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log(email, password);
+    try {
+      console.log('handleSubmit');
+      await auth.signInWithEmailAndPassword(email, password);
+      console.log('handleSubmit end');
+      history.push('/');
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      toast.error(error.message);
+    }
   };
   const handleChange = (e) => {
     switch (e.target.id) {

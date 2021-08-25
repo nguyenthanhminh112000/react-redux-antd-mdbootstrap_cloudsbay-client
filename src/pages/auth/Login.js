@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { auth } from '../../firebase';
+import { auth, googleAuthProvider } from '../../firebase';
 import { toast } from 'react-toastify';
 import { Button } from 'antd';
-import { MailOutlined } from '@ant-design/icons';
+import { GoogleOutlined, MailOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 console.log('Login outside');
 const Login = ({ history }) => {
@@ -24,6 +24,18 @@ const Login = ({ history }) => {
       history.push('/');
     } catch (error) {
       setLoading(false);
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  const handleGoogleLogin = async () => {
+    try {
+      console.log('google login');
+      const result = await auth.signInWithPopup(googleAuthProvider);
+      console.log('google login end');
+      console.log(result);
+      history.push('/');
+    } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
@@ -90,6 +102,16 @@ const Login = ({ history }) => {
         <div className='col-md-6 offset-md-3'>
           <h4>Login</h4>
           {loginForm()}
+          <Button
+            onClick={handleGoogleLogin}
+            type='danger'
+            block
+            shape='round'
+            icon={<GoogleOutlined />}
+            size='large'
+          >
+            Login with Google
+          </Button>
         </div>
       </div>
     </div>

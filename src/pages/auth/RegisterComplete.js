@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
-
 console.log('RegisterComplete outside');
 const RegisterComplete = ({ history }) => {
   console.log('RegisterComplete inside');
@@ -32,7 +31,6 @@ const RegisterComplete = ({ history }) => {
       if (result.user.emailVerified) {
         let user = auth.currentUser;
         await user.updatePassword(password);
-        const idTokenResult = await user.getIdTokenResult();
         toast.success(`Sign up success.`);
         history.push('/');
       }

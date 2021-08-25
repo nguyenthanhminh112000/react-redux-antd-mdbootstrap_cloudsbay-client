@@ -1,5 +1,4 @@
-import { LOG_IN } from './../constants/actionTypes';
-
+import { LOG_IN, LOG_OUT } from './../constants/actionTypes';
 export const firstAuth = (user) => async (dispatch) => {
   try {
     if (user) {
@@ -13,3 +12,5 @@ export const firstAuth = (user) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const logout = () => ({ type: LOG_OUT, payload: null });

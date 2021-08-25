@@ -4,7 +4,7 @@ const userReducer = (state = null, action) => {
     case LOG_IN:
       return action.payload;
     case LOG_OUT:
-      return null;
+      return action.payload;
     default:
       return state;
   }

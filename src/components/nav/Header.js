@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase';
+import { logout } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
 import { Menu } from 'antd';
 import {
   AppstoreOutlined,
   SettingOutlined,
   UserAddOutlined,
   UserOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 const { SubMenu, Item } = Menu;
 console.log('Header outside');
@@ -13,9 +17,14 @@ const Header = () => {
   console.log('Header inside');
   //hooks
   const [current, setCurrent] = useState('');
+  const dispatch = useDispatch();
   //functions
   const handleClick = (e) => {
     setCurrent(e.key);
+  };
+  const handleLogout = () => {
+    auth.signOut();
+    dispatch(logout());
   };
   return (
     <nav
@@ -40,6 +49,13 @@ const Header = () => {
           <SubMenu key='SubMenu' icon={<SettingOutlined />} title='Username'>
             <Item key='setting:1'>Option 1</Item>
             <Item key='setting:2'>Option 2</Item>
+            <Item
+              key='setting:3'
+              icon={<LogoutOutlined />}
+              onClick={handleLogout}
+            >
+              Logout
+            </Item>
           </SubMenu>
         </Menu>
       </nav>

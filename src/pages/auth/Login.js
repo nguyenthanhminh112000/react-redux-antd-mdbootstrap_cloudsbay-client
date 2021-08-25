@@ -1,7 +1,85 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { auth } from '../../firebase';
+import { toast } from 'react-toastify';
+import { Button } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
+console.log('Login outside');
 const Login = () => {
-  return <div>Login</div>;
+  console.log('Login inside');
+  // hooks
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // functions
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  };
+  const handleChange = (e) => {
+    switch (e.target.id) {
+      case 'email':
+        setEmail(e.target.value);
+        break;
+      case 'password':
+        setPassword(e.target.value);
+        break;
+      default:
+        break;
+    }
+  };
+  // components
+  const loginForm = () => (
+    <form onSubmit={handleSubmit}>
+      <div className='form-group'>
+        <input
+          type='email'
+          className='form-control'
+          autoFocus
+          required
+          value={email}
+          onChange={handleChange}
+          placeholder='Your email'
+          style={{ marginBottom: '5px' }}
+          id='email'
+        />
+      </div>
+
+      <div className='form-group'>
+        <input
+          type='password'
+          className='form-control'
+          required
+          value={password}
+          onChange={handleChange}
+          placeholder='Your password'
+          style={{ marginBottom: '5px' }}
+          id='password'
+        />
+      </div>
+
+      <Button
+        onClick={handleSubmit}
+        type='primary'
+        block
+        shape='round'
+        icon={<MailOutlined />}
+        disabled={!email || password.length < 6}
+        size='large'
+      >
+        Login with Email/Password
+      </Button>
+    </form>
+  );
+  return (
+    <div className='container p-5'>
+      {console.log('Login inside return')}
+      <div className='row'>
+        <div className='col-md-6 offset-md-3'>
+          <h4>Login</h4>
+          {loginForm()}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;

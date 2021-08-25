@@ -38,6 +38,8 @@ const Register = () => {
         required
         value={email}
         onChange={handleChange}
+        placeholder='Your email'
+        style={{ marginBottom: '5px' }}
       />
       <button type='submit' className='btn btn-raised'>
         Register

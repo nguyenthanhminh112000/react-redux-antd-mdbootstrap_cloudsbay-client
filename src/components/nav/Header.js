@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { logout } from '../../actions/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Menu } from 'antd';
 import {
   AppstoreOutlined,
@@ -17,6 +17,7 @@ const Header = () => {
   console.log('Header inside');
   //hooks
   const [current, setCurrent] = useState('');
+  const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
   //functions
   const handleClick = (e) => {
@@ -46,32 +47,41 @@ const Header = () => {
           <Item key='home' icon={<AppstoreOutlined />}>
             <Link to='/'>Home</Link>
           </Item>
-          <SubMenu key='SubMenu' icon={<SettingOutlined />} title='Username'>
-            <Item key='setting:1'>Option 1</Item>
-            <Item key='setting:2'>Option 2</Item>
-            <Item
-              key='setting:3'
-              icon={<LogoutOutlined />}
-              onClick={handleLogout}
-            >
-              Logout
-            </Item>
-          </SubMenu>
         </Menu>
       </nav>
-      <nav>
+      <nav style={{ flexGrow: 1 }}>
         <Menu
           onClick={handleClick}
           selectedKeys={[current]}
           mode='horizontal'
-          style={{ display: 'flex' }}
+          style={{ display: 'flex', justifyContent: 'flex-end' }}
         >
-          <Item key='login' icon={<UserOutlined />}>
-            <Link to='/login'> Login</Link>
-          </Item>
-          <Item key='register' icon={<UserAddOutlined />}>
-            <Link to='/register'> Register</Link>
-          </Item>
+          {user ? (
+            <SubMenu
+              key='SubMenu'
+              icon={<SettingOutlined />}
+              title={user ? user.email.split('@')[0] : 'Username'}
+            >
+              <Item key='setting:1'>Option 1</Item>
+              <Item key='setting:2'>Option 2</Item>
+              <Item
+                key='setting:3'
+                icon={<LogoutOutlined />}
+                onClick={handleLogout}
+              >
+                Logout
+              </Item>
+            </SubMenu>
+          ) : (
+            <>
+              <Item key='login' icon={<UserOutlined />}>
+                <Link to='/login'> Login</Link>
+              </Item>
+              <Item key='register' icon={<UserAddOutlined />}>
+                <Link to='/register'> Register</Link>
+              </Item>
+            </>
+          )}
         </Menu>
       </nav>
     </nav>

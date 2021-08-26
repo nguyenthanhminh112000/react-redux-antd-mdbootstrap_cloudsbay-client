@@ -100,7 +100,12 @@ const Login = ({ history }) => {
       {console.log('Login inside return')}
       <div className='row'>
         <div className='col-md-6 offset-md-3'>
-          <h4>Login</h4>
+          {!loading ? (
+            <h4>Login</h4>
+          ) : (
+            <h4 style={{ color: 'red' }}>Loading...</h4>
+          )}
+
           {loginForm()}
           <Button
             onClick={handleGoogleLogin}

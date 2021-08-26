@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { Button } from 'antd';
 import { GoogleOutlined, MailOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 console.log('Login outside');
 const Login = ({ history }) => {
   console.log('Login inside');
@@ -117,6 +118,17 @@ const Login = ({ history }) => {
           >
             Login with Google
           </Button>
+          <Link
+            className='text-danger'
+            to='/forgot/password'
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginTop: '5px',
+            }}
+          >
+            Forgot Password
+          </Link>
         </div>
       </div>
     </div>

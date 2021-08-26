@@ -10,6 +10,7 @@ import RegisterComplete from './pages/auth/RegisterComplete';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { firstAuth } from './actions/auth';
+import ForgotPassword from './pages/auth/ForgotPassword';
 console.log('App outside');
 const App = () => {
   //hooks
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='/login' exact component={Login} />
         <Route path='/register' exact component={Register} />
         <Route path='/register/complete' component={RegisterComplete} />
+        <Route path='/forgot/password' component={ForgotPassword} />
         <Route path='/' component={Home} />
       </Switch>
     </>

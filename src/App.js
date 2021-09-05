@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import RegisterComplete from './pages/auth/RegisterComplete';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { firstAuth } from './actions/auth';
+import { authObserver } from './actions/auth';
 import ForgotPassword from './pages/auth/ForgotPassword';
 console.log('App outside');
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
     console.log('App inside useEffect');
     const unsubscribe = auth.onAuthStateChanged((user) => {
       console.log('App inside onAuthStateChanged');
-      dispatch(firstAuth(user));
+      dispatch(authObserver(user));
     });
     return () => {
       console.log('unsubcribe');

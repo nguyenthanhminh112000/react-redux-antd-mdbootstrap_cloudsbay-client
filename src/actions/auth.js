@@ -1,16 +1,21 @@
 import { LOG_IN, LOG_OUT } from './../constants/actionTypes';
-export const firstAuth = (user) => async (dispatch) => {
+import { loginOrRegister } from './../api/auth';
+export const authObserver = (user) => async (dispatch) => {
   try {
     if (user) {
-      const idTokenResult = await user.getIdTokenResult();
+      const { token } = await user.getIdTokenResult();
+      const { data: fullUser } = await loginOrRegister(token);
+      console.log(fullUser);
       dispatch({
         type: LOG_IN,
-        payload: { email: user.email, token: idTokenResult.token },
+        payload: { ...fullUser, token },
       });
+    } else {
+      dispatch({ type: LOG_OUT, payload: null });
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const logout = () => ({ type: LOG_OUT, payload: null });
+// export const logout = () => ();

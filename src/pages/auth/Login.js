@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import { GoogleOutlined, MailOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loginOrRegister } from './../../api/auth';
 console.log('Login outside');
 const Login = ({ history }) => {
   console.log('Login inside');
@@ -14,6 +15,7 @@ const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   // functions
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -25,7 +27,9 @@ const Login = ({ history }) => {
       history.push('/');
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
+      console.dir(error);
+      console.log(error.message);
       toast.error(error.message);
     }
   };

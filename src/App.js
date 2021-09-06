@@ -8,6 +8,7 @@ import Register from './pages/auth/Register';
 import Home from './pages/Home';
 import RegisterComplete from './pages/auth/RegisterComplete';
 import History from './pages/user/History';
+import UserRoute from './components/routes/UserRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authObserver } from './actions/auth';
@@ -38,9 +39,9 @@ const App = () => {
         {console.log('App inside return')}
         <Route path='/login' exact component={Login} />
         <Route path='/register' exact component={Register} />
-        <Route path='/register/complete' component={RegisterComplete} />
-        <Route path='/forgot/password' component={ForgotPassword} />
-        <Route path='/user/history' component={History} />
+        <Route path='/register/complete' exact component={RegisterComplete} />
+        <Route path='/forgot/password' exact component={ForgotPassword} />
+        <UserRoute path='/user/history' exact component={History} />
         <Route path='/' component={Home} />
       </Switch>
     </>

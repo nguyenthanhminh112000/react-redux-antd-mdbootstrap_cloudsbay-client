@@ -32,7 +32,6 @@ const RegisterComplete = ({ history }) => {
         let user = auth.currentUser;
         await user.updatePassword(password);
         toast.success(`Sign up success.`);
-        history.push('/');
       }
     } catch (error) {
       toast.error(error.message);

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth } from './firebase';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from './components/nav/Header';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Home from './pages/Home';
 import RegisterComplete from './pages/auth/RegisterComplete';
+import History from './pages/user/History';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authObserver } from './actions/auth';
@@ -15,11 +16,12 @@ console.log('App outside');
 const App = () => {
   //hooks
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     console.log('App inside useEffect');
     const unsubscribe = auth.onAuthStateChanged((user) => {
       console.log('App inside onAuthStateChanged');
-      dispatch(authObserver(user));
+      dispatch(authObserver(user, history));
     });
     return () => {
       console.log('unsubcribe');
@@ -38,6 +40,7 @@ const App = () => {
         <Route path='/register' exact component={Register} />
         <Route path='/register/complete' component={RegisterComplete} />
         <Route path='/forgot/password' component={ForgotPassword} />
+        <Route path='/user/history' component={History} />
         <Route path='/' component={Home} />
       </Switch>
     </>

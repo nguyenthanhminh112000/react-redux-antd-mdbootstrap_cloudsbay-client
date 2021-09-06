@@ -5,7 +5,6 @@ import { Button } from 'antd';
 import { GoogleOutlined, MailOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginOrRegister } from './../../api/auth';
 console.log('Login outside');
 const Login = ({ history }) => {
   console.log('Login inside');
@@ -24,7 +23,6 @@ const Login = ({ history }) => {
       console.log('handleSubmit');
       await auth.signInWithEmailAndPassword(email, password);
       console.log('handleSubmit end');
-      history.push('/');
     } catch (error) {
       setLoading(false);
       console.error(error);
@@ -39,7 +37,6 @@ const Login = ({ history }) => {
       const result = await auth.signInWithPopup(googleAuthProvider);
       console.log('google login end');
       console.log(result);
-      history.push('/');
     } catch (error) {
       console.log(error);
       toast.error(error.message);

@@ -11,6 +11,8 @@ import History from './pages/user/History';
 import Password from './pages/user/Password';
 import Wishlist from './pages/user/Wishlist';
 import UserRoute from './components/routes/UserRoute';
+import AdminRoute from './components/routes/AdminRoute';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authObserver } from './actions/auth';
@@ -46,6 +48,7 @@ const App = () => {
         <UserRoute path='/user/history' exact component={History} />
         <UserRoute path='/user/password' exact component={Password} />
         <UserRoute path='/user/wishlist' exact component={Wishlist} />
+        <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
         <Route path='/' component={Home} />
       </Switch>
     </>

@@ -3,7 +3,6 @@ import { auth, googleAuthProvider } from '../../firebase';
 import { toast } from 'react-toastify';
 import { Button } from 'antd';
 import { GoogleOutlined, MailOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 console.log('Login outside');
 const Login = ({ history }) => {
@@ -12,7 +11,6 @@ const Login = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   // functions
 
   const handleSubmit = async (e) => {
@@ -22,6 +20,7 @@ const Login = ({ history }) => {
     try {
       console.log('handleSubmit');
       await auth.signInWithEmailAndPassword(email, password);
+      history.push('/');
       console.log('handleSubmit end');
     } catch (error) {
       setLoading(false);
@@ -35,6 +34,7 @@ const Login = ({ history }) => {
     try {
       console.log('google login');
       const result = await auth.signInWithPopup(googleAuthProvider);
+      history.push('/');
       console.log('google login end');
       console.log(result);
     } catch (error) {

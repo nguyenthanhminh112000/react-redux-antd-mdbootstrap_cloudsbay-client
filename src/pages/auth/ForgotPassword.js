@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
 console.log('ForgotPassword outside');
 const ForgotPassword = ({ history }) => {
   console.log('ForgotPassword inside');
   // hooks
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   // functions
   const handleSubmit = async (e) => {
     e.preventDefault();

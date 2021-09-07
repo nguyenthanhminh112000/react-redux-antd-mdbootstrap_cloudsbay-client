@@ -1,7 +1,13 @@
 import React from 'react';
-
+console.log('Home outside');
 const Home = () => {
-  return <div>Home</div>;
+  console.log('Home inside');
+  return (
+    <div>
+      Home
+      {console.log('Home inside return')}
+    </div>
+  );
 };
 
 export default Home;

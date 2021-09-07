@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
-import { logout } from '../../actions/auth';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Menu } from 'antd';
 import {
   AppstoreOutlined,
@@ -18,14 +17,12 @@ const Header = () => {
   //hooks
   const [current, setCurrent] = useState('');
   const { user } = useSelector((state) => state);
-  const dispatch = useDispatch();
   //functions
   const handleClick = (e) => {
     setCurrent(e.key);
   };
   const handleLogout = () => {
     auth.signOut();
-    // dispatch(logout());
   };
   return (
     <nav

@@ -10,9 +10,6 @@ export const authObserver = (user, history) => async (dispatch) => {
         type: LOG_IN,
         payload: { ...fullUser, token },
       });
-      fullUser.role === 'admin'
-        ? history.push('/admin/dashboard')
-        : history.push('/user/history');
     } else {
       dispatch({ type: LOG_OUT, payload: null });
     }

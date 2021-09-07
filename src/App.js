@@ -8,6 +8,8 @@ import Register from './pages/auth/Register';
 import Home from './pages/Home';
 import RegisterComplete from './pages/auth/RegisterComplete';
 import History from './pages/user/History';
+import Password from './pages/user/Password';
+import Wishlist from './pages/user/Wishlist';
 import UserRoute from './components/routes/UserRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +44,8 @@ const App = () => {
         <Route path='/register/complete' exact component={RegisterComplete} />
         <Route path='/forgot/password' exact component={ForgotPassword} />
         <UserRoute path='/user/history' exact component={History} />
+        <UserRoute path='/user/password' exact component={Password} />
+        <UserRoute path='/user/wishlist' exact component={Wishlist} />
         <Route path='/' component={Home} />
       </Switch>
     </>

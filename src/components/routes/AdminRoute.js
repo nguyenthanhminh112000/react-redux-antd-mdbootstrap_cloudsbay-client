@@ -25,7 +25,7 @@ const AdminRoute = (props) => {
     handleCheckAdmin();
   }, [user]);
 
-  return isAdmin ? <Route {...props} /> : <LoadingToRedirect />;
+  return isAdmin && user ? <Route {...props} /> : <LoadingToRedirect />;
 };
 
 export default AdminRoute;

@@ -12,6 +12,7 @@ import Password from './pages/user/Password';
 import Wishlist from './pages/user/Wishlist';
 import UserRoute from './components/routes/UserRoute';
 import AdminRoute from './components/routes/AdminRoute';
+import GuestRoute from './components/routes/GuestRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,10 +42,14 @@ const App = () => {
       <Header />
       <Switch>
         {console.log('App inside return')}
-        <Route path='/login' exact component={Login} />
-        <Route path='/register' exact component={Register} />
-        <Route path='/register/complete' exact component={RegisterComplete} />
-        <Route path='/forgot/password' exact component={ForgotPassword} />
+        <GuestRoute path='/login' exact component={Login} />
+        <GuestRoute path='/register' exact component={Register} />
+        <GuestRoute
+          path='/register/complete'
+          exact
+          component={RegisterComplete}
+        />
+        <GuestRoute path='/forgot/password' exact component={ForgotPassword} />
         <UserRoute path='/user/history' exact component={History} />
         <UserRoute path='/user/password' exact component={Password} />
         <UserRoute path='/user/wishlist' exact component={Wishlist} />
